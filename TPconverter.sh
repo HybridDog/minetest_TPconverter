@@ -8,61 +8,32 @@ mkdir minetest
 cp terrain.png minetest/obj.png
 cp gui/items.png minetest/items.png
 cd minetest
+echo folder created
+
 cp obj.png oftn.png
 mogrify -crop $((2*b))x${b}+0 oftn.png
-cp oftn.png default_dirt.png
-cp oftn.png default_gravel.png
-cp oftn.png default_cobble.png
-cp oftn.png default_grass.png
-cp oftn.png default_stone.png
-cp oftn.png default_grass_side.png
-cp oftn.png default_bookshelf.png
-cp oftn.png default_sand.png
-cp oftn.png default_wood.png
-cp oftn.png default_tree.png
-cp oftn.png default_tree_top.png
-cp oftn.png default_mineral_coal.png
-cp oftn.png default_mineral_iron.png
-cp oftn.png default_mossycobble.png
+for of in dirt gravel cobble grass stone grass_side bookshelf sand wood tree tree_top mineral_coal mineral_iron mossycobble
+do cp oftn.png default_${of}.png
+done
 rm oftn.png
 
-cp obj.png default_brick.png
-cp obj.png default_cactus_side.png
-cp obj.png default_cactus_top.png
+for ob in clay glass junglegrass jungletree leaves dry_shrub papyrus sandstone sapling steel_block torch_on_floor ladder cactus_top cactus_side brick
+do cp obj.png default_${ob}.png
+done
 cp obj.png caf.png
-mogrify -crop $((2*b))x${b}+$((3*b))+$s caf.png
-cp caf.png default_chest_front.png
-#cp caf.png default_chest_lock.png
-cp caf.png default_chest_side.png
-cp caf.png default_chest_top.png
-cp caf.png default_furnace_bottom.png
-cp caf.png default_furnace_front.png
-cp caf.png default_furnace_front_active.png
-cp caf.png default_furnace_side.png
-rm caf.png
-
-cp obj.png default_clay.png
-cp obj.png default_glass.png
-cp obj.png default_junglegrass.png
-cp obj.png default_jungletree.png
-cp obj.png default_leaves.png
-cp obj.png default_dry_shrub.png
-cp obj.png default_papyrus.png
-cp obj.png default_sandstone.png
-cp obj.png default_sapling.png
-cp obj.png default_steel_block.png
-cp obj.png default_torch_on_floor.png
-cp obj.png default_ladder.png
 rm obj.png
 
-cp items.png default_apple.png
-cp items.png default_book.png
-cp items.png default_clay_brick.png
-cp items.png default_clay_lump.png
-cp items.png default_coal_lump.png
-cp items.png default_paper.png
-cp items.png default_steel_ingot.png
-cp items.png default_stick.png
+mogrify -crop $((2*b))x${b}+$((3*b))+$s caf.png
+for ca in chest_front chest_side chest_top furnace_bottom furnace_front furnace_front_active furnace_side
+do cp caf.png default_${ca}.png
+done
+rm caf.png
+
+echo block textures copied
+
+for it in apple book clay_brick clay_lump coal_lump paper steel_ingot stick
+do cp items.png default_${it}.png
+done
 cp items.png tools.png
 rm items.png
 
@@ -70,6 +41,8 @@ mogrify -crop ${c}x${c}+0+$((2*a)) tools.png
 cp tools.png default_tool_steelaxe.png
 cp tools.png default_tool_steelpick.png
 rm tools.png
+
+echo item textures copied
 
 mogrify -crop ${si}0 default_grass.png
 mogrify -crop ${si}$a default_dirt.png
@@ -119,3 +92,4 @@ mogrify -crop ${si}$c+$b default_stick.png
 mogrify -crop ${si}$a+$d default_tool_steelaxe.png
 mogrify -crop ${si}$a+$((2*b)) default_tool_steelpick.png
 
+echo textures edited
