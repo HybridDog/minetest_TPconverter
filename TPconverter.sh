@@ -47,8 +47,9 @@ cp items.png tools.png
 rm items.png
 
 mogrify -crop ${c}x${c}+0+${aa} tools.png
-cp tools.png default_tool_steelaxe.png
-cp tools.png default_tool_steelpick.png
+for to in steelaxe steelpick
+do cp tools.png default_tool_${to}.png
+done
 rm tools.png
 
 echo item textures copied
