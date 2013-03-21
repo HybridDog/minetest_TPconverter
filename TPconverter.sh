@@ -1,5 +1,6 @@
 s=$*
 a=$((s*2))
+aa=$((a*2))
 b=$((s*3))
 c=$((s*5))
 d=$((s*7))
@@ -18,7 +19,14 @@ do cp oftn.png default_${of}.png
 done
 rm oftn.png
 
-for ob in clay glass junglegrass jungletree leaves dry_shrub papyrus sandstone sapling steel_block torch_on_floor ladder cactus_top cactus_side brick
+cp obj.png pla.png
+mogrify -crop $((3*b))x${a}+${s}+$b pla.png
+for plant in clay glass leaves dry_shrub papyrus cactus_top cactus_side
+do cp pla.png default_${plant}.png
+done
+rm pla.png
+
+for ob in junglegrass jungletree sandstone sapling steel_block torch_on_floor ladder brick
 do cp obj.png default_${ob}.png
 done
 cp obj.png caf.png
@@ -38,7 +46,7 @@ done
 cp items.png tools.png
 rm items.png
 
-mogrify -crop ${c}x${c}+0+$((2*a)) tools.png
+mogrify -crop ${c}x${c}+0+${aa} tools.png
 cp tools.png default_tool_steelaxe.png
 cp tools.png default_tool_steelpick.png
 rm tools.png
@@ -54,23 +62,23 @@ ${edt}$b default_grass_side.png
 ${edt}$b+$a default_bookshelf.png
 ${edt}$a+$s default_sand.png
 ${edt}$d default_brick.png
-${edt}$((3*a))+$((2*a)) default_cactus_side.png
-${edt}$c+$((2*a)) default_cactus_top.png
-${edt}$((2*a)) default_wood.png
-${edt}$((2*a))+$s default_tree.png
+${edt}$((2*b))+${aa} default_cactus_side.png
+${edt}$c+${aa} default_cactus_top.png
+${edt}${aa} default_wood.png
+${edt}${aa}+$s default_tree.png
 ${edt}$c+$s default_tree_top.png
-${edt}$((4*a))+$((2*a)) default_clay.png
+${edt}$((4*a))+${aa} default_clay.png
 ${edt}$s+$b default_glass.png
 ${edt}$d+$a default_junglegrass.png
 ${edt}$((3*b))+$((3*b)) default_jungletree.png
-${edt}$((2*a))+$b default_leaves.png
+${edt}${aa}+$b default_leaves.png
 ${edt}$d+$b default_dry_shrub.png
 ${edt}$a+$a default_mineral_coal.png
 ${edt}$s+$a default_mineral_iron.png
-${edt}$((2*a))+$a default_mossycobble.png
-${edt}$((3*b))+$((2*a)) default_papyrus.png
-${edt}0+$((6*a)) default_sandstone.png
-${edt}$((5*b)) default_sapling.png
+${edt}${aa}+$a default_mossycobble.png
+${edt}$((3*b))+${aa} default_papyrus.png
+${edt}0+$((4*b)) default_sandstone.png
+${edt}$((3*c)) default_sapling.png
 ${edt}$((2*b))+$s default_steel_block.png
 ${edt}0+$c default_torch_on_floor.png
 ${edt}$((2*d))+$b default_furnace_bottom.png
@@ -82,7 +90,10 @@ ${edt}$b+$c default_ladder.png
 ${edt}$((11*s))+$s default_chest_front.png
 ${edt}$((2*c))+$s default_chest_side.png
 ${edt}$((3*b))+$s default_chest_top.png
-${edt}$((2*c))+0 default_apple.png
+
+echo block textures edited
+
+${edt}$((2*c)) default_apple.png
 ${edt}$((11*s))+$b default_book.png
 ${edt}$((2*b))+$s default_clay_brick.png
 ${edt}$((3*b))+$b default_clay_lump.png
@@ -93,4 +104,4 @@ ${edt}$c+$b default_stick.png
 ${edt}$a+$d default_tool_steelaxe.png
 ${edt}$a+$((2*b)) default_tool_steelpick.png
 
-echo textures edited
+echo item textures edited
