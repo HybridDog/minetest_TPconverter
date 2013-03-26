@@ -8,59 +8,65 @@ si=${s}x${s}+
 edt="mogrify -crop ${si}"
 mkdir minetest
 cp terrain.png minetest/default_junglegrass.png
-cp gui/items.png minetest/items.png
+cp gui/items.png minetest/default_apple.png
 cd minetest
 echo folder created
+echo copy textures...
 
 for obcts in default_dirt default_clay default_chest_front wool_white
-do cp default_junglegrass.png ${obcts}.png
+	do cp default_junglegrass.png ${obcts}.png
 done
 
 mogrify -crop $((2*b))x${b}+0 default_dirt.png
 for of in gravel cobble grass stone grass_side bookshelf sand wood tree tree_top mineral_coal mineral_iron mossycobble obsidian
-do cp default_dirt.png default_${of}.png
+	do cp default_dirt.png default_${of}.png
 done
 
 mogrify -crop $((3*b))x${a}+${s}+$b default_clay.png
 for plant in glass leaves dry_shrub papyrus cactus_top cactus_side stonebrick
-do cp default_clay.png default_${plant}.png
+	do cp default_clay.png default_${plant}.png
 done
 
 for ob in jungletree sandstone sapling steel_block torch_on_floor ladder brick junglewood
-do cp default_junglegrass.png default_${ob}.png
+	do cp default_junglegrass.png default_${ob}.png
 done
 
 mogrify -crop $((2*b))x${b}+$((3*b))+$s default_chest_front.png
 for ca in chest_side chest_top furnace_bottom furnace_front furnace_front_active furnace_side
-do cp default_chest_front.png default_${ca}.png
+	do cp default_chest_front.png default_${ca}.png
 done
 
-echo block textures copied
+echo -n blocks, 
+
 
 mogrify -crop ${a}x$((4*a))+$s+$d wool_white.png
 for name in grey black red yellow green cyan blue magenta orange violet brown pink dark_grey dark_green
-do cp wool_white.png wool_${name}.png
+	do cp wool_white.png wool_${name}.png
 done
 
-echo wool textures copied
+echo -n wools, 
 
-for it in apple book clay_brick clay_lump coal_lump paper steel_ingot stick
-do cp items.png default_${it}.png
+
+for it in book clay_brick clay_lump coal_lump paper steel_ingot stick
+	do cp default_apple.png default_${it}.png
 done
-cp items.png tools.png
-rm items.png
+cp default_apple.png tools.png
 
-echo item textures copied
+echo -n items, 
+
 
 mogrify -crop ${c}x${c}+0+${aa} tools.png
 for types in steel stone wood
-do for to in axe pick shovel sword
-do cp tools.png default_tool_${types}${to}.png
-done
+	do for to in axe pick shovel sword
+		do cp tools.png default_tool_${types}${to}.png
+	done
 done
 rm tools.png
 
-echo tool textures copied
+echo tools
+
+
+echo edit them...
 
 ${edt}0 default_grass.png
 ${edt}$a default_dirt.png
@@ -104,7 +110,8 @@ ${edt}$((11*s))+$s default_chest_front.png
 ${edt}$((2*c))+$s default_chest_side.png
 ${edt}$((3*b))+$s default_chest_top.png
 
-echo block textures edited
+echo -n blocks, 
+
 
 ${edt}$s+$d wool_black.png
 ${edt}$s+$((4*a)) wool_red.png
@@ -122,7 +129,8 @@ rm wool_dark_grey.png
 ${edt}$a+$((4*b)) wool_magenta.png
 ${edt}$a+$((13*s)) wool_orange.png
 
-echo wool textures edited
+echo -n wools, 
+
 
 ${edt}$((2*c)) default_apple.png
 ${edt}$((11*s))+$b default_book.png
@@ -133,7 +141,8 @@ ${edt}$((2*c))+$b default_paper.png
 ${edt}$d+$s default_steel_ingot.png
 ${edt}$c+$b default_stick.png
 
-echo item textures edited
+echo -n items, 
+
 
 ${edt}$a+$d default_tool_steelaxe.png
 ${edt}$a+$((2*b)) default_tool_steelpick.png
@@ -148,4 +157,4 @@ ${edt}0+$((2*b)) default_tool_woodpick.png
 ${edt}0+$c default_tool_woodshovel.png
 ${edt}0+$((2*a)) default_tool_woodsword.png
 
-echo tool textures edited
+echo tools
