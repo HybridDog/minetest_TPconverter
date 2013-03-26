@@ -14,19 +14,19 @@ echo folder created
 
 cp obj.png oftn.png
 mogrify -crop $((2*b))x${b}+0 oftn.png
-for of in dirt gravel cobble grass stone grass_side bookshelf sand wood tree tree_top mineral_coal mineral_iron mossycobble
+for of in dirt gravel cobble grass stone grass_side bookshelf sand wood tree tree_top mineral_coal mineral_iron mossycobble obsidian
 do cp oftn.png default_${of}.png
 done
 rm oftn.png
 
 cp obj.png pla.png
 mogrify -crop $((3*b))x${a}+${s}+$b pla.png
-for plant in clay glass leaves dry_shrub papyrus cactus_top cactus_side
+for plant in clay glass leaves dry_shrub papyrus cactus_top cactus_side stonebrick
 do cp pla.png default_${plant}.png
 done
 rm pla.png
 
-for ob in junglegrass jungletree sandstone sapling steel_block torch_on_floor ladder brick
+for ob in junglegrass jungletree sandstone sapling steel_block torch_on_floor ladder brick junglewood
 do cp obj.png default_${ob}.png
 done
 cp obj.png caf.png
@@ -46,13 +46,17 @@ done
 cp items.png tools.png
 rm items.png
 
+echo item textures copied
+
 mogrify -crop ${c}x${c}+0+${aa} tools.png
-for to in steelaxe steelpick
-do cp tools.png default_tool_${to}.png
+for types in steel stone wood
+do for to in axe pick shovel sword
+do cp tools.png default_tool_${types}${to}.png
+done
 done
 rm tools.png
 
-echo item textures copied
+echo tool textures copied
 
 ${edt}0 default_grass.png
 ${edt}$a default_dirt.png
@@ -82,6 +86,10 @@ ${edt}0+$((4*b)) default_sandstone.png
 ${edt}$((3*c)) default_sapling.png
 ${edt}$((2*b))+$s default_steel_block.png
 ${edt}0+$c default_torch_on_floor.png
+${edt}$c+$a default_obsidian.png
+${edt}$d+$((4*b)) default_junglewood.png
+${edt}$((2*b))+$b default_stonebrick.png
+
 ${edt}$((2*d))+$b default_furnace_bottom.png
 cp default_furnace_bottom.png default_furnace_top.png
 ${edt}$((4*b))+$a default_furnace_front.png
@@ -102,7 +110,20 @@ ${edt}$d default_coal_lump.png
 ${edt}$((2*c))+$b default_paper.png
 ${edt}$d+$s default_steel_ingot.png
 ${edt}$c+$b default_stick.png
-${edt}$a+$d default_tool_steelaxe.png
-${edt}$a+$((2*b)) default_tool_steelpick.png
 
 echo item textures edited
+
+${edt}$a+$d default_tool_steelaxe.png
+${edt}$a+$((2*b)) default_tool_steelpick.png
+${edt}$a+$c default_tool_steelshovel.png
+${edt}$a+$((2*a)) default_tool_steelsword.png
+${edt}$s+$d default_tool_stoneaxe.png
+${edt}$s+$((2*b)) default_tool_stonepick.png
+${edt}$s+$c default_tool_stoneshovel.png
+${edt}$s+$((2*a)) default_tool_stonesword.png
+${edt}0+$d default_tool_woodaxe.png
+${edt}0+$((2*b)) default_tool_woodpick.png
+${edt}0+$c default_tool_woodshovel.png
+${edt}0+$((2*a)) default_tool_woodsword.png
+
+echo tool textures edited
