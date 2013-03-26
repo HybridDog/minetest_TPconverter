@@ -7,38 +7,42 @@ d=$((s*7))
 si=${s}x${s}+
 edt="mogrify -crop ${si}"
 mkdir minetest
-cp terrain.png minetest/obj.png
+cp terrain.png minetest/default_junglegrass.png
 cp gui/items.png minetest/items.png
 cd minetest
 echo folder created
 
-cp obj.png oftn.png
-mogrify -crop $((2*b))x${b}+0 oftn.png
-for of in dirt gravel cobble grass stone grass_side bookshelf sand wood tree tree_top mineral_coal mineral_iron mossycobble obsidian
-do cp oftn.png default_${of}.png
+for obcts in default_dirt default_clay default_chest_front wool_white
+do cp default_junglegrass.png ${obcts}.png
 done
-rm oftn.png
 
-cp obj.png pla.png
-mogrify -crop $((3*b))x${a}+${s}+$b pla.png
-for plant in clay glass leaves dry_shrub papyrus cactus_top cactus_side stonebrick
-do cp pla.png default_${plant}.png
+mogrify -crop $((2*b))x${b}+0 default_dirt.png
+for of in gravel cobble grass stone grass_side bookshelf sand wood tree tree_top mineral_coal mineral_iron mossycobble obsidian
+do cp default_dirt.png default_${of}.png
 done
-rm pla.png
 
-for ob in junglegrass jungletree sandstone sapling steel_block torch_on_floor ladder brick junglewood
-do cp obj.png default_${ob}.png
+mogrify -crop $((3*b))x${a}+${s}+$b default_clay.png
+for plant in glass leaves dry_shrub papyrus cactus_top cactus_side stonebrick
+do cp default_clay.png default_${plant}.png
 done
-cp obj.png caf.png
-rm obj.png
 
-mogrify -crop $((2*b))x${b}+$((3*b))+$s caf.png
-for ca in chest_front chest_side chest_top furnace_bottom furnace_front furnace_front_active furnace_side
-do cp caf.png default_${ca}.png
+for ob in jungletree sandstone sapling steel_block torch_on_floor ladder brick junglewood
+do cp default_junglegrass.png default_${ob}.png
 done
-rm caf.png
+
+mogrify -crop $((2*b))x${b}+$((3*b))+$s default_chest_front.png
+for ca in chest_side chest_top furnace_bottom furnace_front furnace_front_active furnace_side
+do cp default_chest_front.png default_${ca}.png
+done
 
 echo block textures copied
+
+mogrify -crop ${a}x$((4*a))+$s+$d wool_white.png
+for name in grey black red yellow green cyan blue magenta orange violet brown pink dark_grey dark_green
+do cp wool_white.png wool_${name}.png
+done
+
+echo wool textures copied
 
 for it in apple book clay_brick clay_lump coal_lump paper steel_ingot stick
 do cp items.png default_${it}.png
@@ -101,6 +105,24 @@ ${edt}$((2*c))+$s default_chest_side.png
 ${edt}$((3*b))+$s default_chest_top.png
 
 echo block textures edited
+
+${edt}$s+$d wool_black.png
+${edt}$s+$((4*a)) wool_red.png
+${edt}$s+$((3*b)) wool_dark_green.png
+${edt}$s+$((2*c)) wool_brown.png
+${edt}$s+$((11*s)) wool_blue.png
+${edt}$s+$((4*b)) wool_violet.png
+${edt}$s+$((13*s)) wool_cyan.png
+${edt}$s+$((2*d)) wool_white.png
+${edt}$a+$d wool_grey.png
+${edt}$a+$((4*a)) wool_pink.png
+${edt}$a+$((3*b)) wool_green.png
+${edt}$a+$((2*c)) wool_yellow.png
+rm wool_dark_grey.png
+${edt}$a+$((4*b)) wool_magenta.png
+${edt}$a+$((13*s)) wool_orange.png
+
+echo wool textures edited
 
 ${edt}$((2*c)) default_apple.png
 ${edt}$((11*s))+$b default_book.png
