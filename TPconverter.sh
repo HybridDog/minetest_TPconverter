@@ -18,16 +18,16 @@ for obcts in default_dirt default_clay default_chest_front wool_white
 done
 
 mogrify -crop $((2*b))x${b}+0 default_dirt.png
-for of in gravel cobble grass stone grass_side bookshelf sand wood tree tree_top mineral_coal mineral_iron mossycobble obsidian
+for of in gravel cobble grass stone grass_side bookshelf sand wood tree tree_top mossycobble obsidian mineral_coal mineral_iron mineral_gold
 	do cp default_dirt.png default_${of}.png
 done
 
 mogrify -crop $((3*b))x${a}+${s}+$b default_clay.png
-for plant in glass leaves dry_shrub papyrus cactus_top cactus_side stonebrick
+for plant in glass leaves dry_shrub papyrus cactus_top cactus_side stone_brick mineral_diamond
 	do cp default_clay.png default_${plant}.png
 done
 
-for ob in jungletree sandstone sapling steel_block torch_on_floor ladder brick junglewood
+for ob in jungletree sandstone sapling torch_on_floor ladder brick junglewood steel_block gold_block diamond_block
 	do cp default_junglegrass.png default_${ob}.png
 done
 
@@ -88,17 +88,23 @@ ${edt}$d+$a default_junglegrass.png
 ${edt}$((3*b))+$((3*b)) default_jungletree.png
 ${edt}${aa}+$b default_leaves.png
 ${edt}$d+$b default_dry_shrub.png
+
 ${edt}$a+$a default_mineral_coal.png
 ${edt}$s+$a default_mineral_iron.png
+${edt}0+$a default_mineral_gold.png
+${edt}$a+$b default_mineral_diamond.png
+${edt}$((2*b))+$s default_steel_block.png
+${edt}$d+$s default_gold_block.png
+${edt}$((4*a))+$s default_diamond_block.png
+
 ${edt}${aa}+$a default_mossycobble.png
 ${edt}$((3*b))+${aa} default_papyrus.png
 ${edt}0+$((4*b)) default_sandstone.png
 ${edt}$((3*c)) default_sapling.png
-${edt}$((2*b))+$s default_steel_block.png
 ${edt}0+$c default_torch_on_floor.png
 ${edt}$c+$a default_obsidian.png
 ${edt}$d+$((4*b)) default_junglewood.png
-${edt}$((2*b))+$b default_stonebrick.png
+${edt}$((2*b))+$b default_stone_brick.png
 
 ${edt}$((2*d))+$b default_furnace_bottom.png
 cp default_furnace_bottom.png default_furnace_top.png
