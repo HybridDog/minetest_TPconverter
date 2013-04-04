@@ -9,6 +9,10 @@ edt="mogrify -crop ${si}"
 mkdir minetest
 cp terrain.png minetest/default_junglegrass.png
 cp gui/items.png minetest/default_apple.png
+cp anim/custom_water_flowing.png minetest/default_water_flowing_animated.png
+cp anim/custom_water_still.png minetest/default_water_source_animated.png
+cp anim/custom_lava_flowing.png minetest/default_lava_flowing_animated.png
+cp anim/custom_lava_still.png minetest/default_lava_source_animated.png
 cd minetest
 echo folder created
 echo copy textures...
@@ -163,4 +167,11 @@ ${edt}0+$((2*b)) default_tool_woodpick.png
 ${edt}0+$c default_tool_woodshovel.png
 ${edt}0+$((2*a)) default_tool_woodsword.png
 
-echo tools
+echo -n tools,
+
+k=$((1600/s))
+for liquids in water_flowing water_source lava_flowing lava_source
+	do mogrify -resize ${k}% default_${liquids}_animated.png
+done
+
+echo liquids
