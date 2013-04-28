@@ -175,3 +175,9 @@ for liquids in water_flowing water_source lava_flowing lava_source
 done
 
 echo liquids
+
+for i in *.png
+	do convert $i +repage $i
+done
+
+echo textures repaged
